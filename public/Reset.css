@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  overflow-x: hidden;
+}
+
+ul li {
+  list-style: none;
+}
+
+button,
+input,
+textarea,
+a {
+  outline: none;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  resize: vertical;
+}
+
+button,
+a,
+label,
+select,
+option {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}

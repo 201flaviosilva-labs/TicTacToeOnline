@@ -1,0 +1,116 @@
+body {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  header {
+    * {
+      text-align: center;
+    }
+  }
+  main {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div.Game {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      grid-template-rows: 1fr auto;
+      gap: 10px 10px;
+      grid-template-areas:
+        "PlayerX Board PlayerO"
+        ". ControlBtn .";
+      button {
+        color: black;
+      }
+      div {
+        &.PlayerX {
+          grid-area: PlayerX;
+          * {
+            color: red;
+          }
+        }
+        &.PlayerO {
+          grid-area: PlayerO;
+          * {
+            color: blue;
+          }
+        }
+        &.PlayerX,
+        &.PlayerO {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          // justify-content: center;
+        }
+        &.board {
+          grid-area: Board;
+          margin: 10px 20px;
+          padding: 10px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(3, 1fr);
+          gap: 10px 10px;
+          border: 1px solid white;
+          box-shadow: 0 0 20px white;
+          button {
+            width: 100px;
+            height: 100px;
+            box-shadow: 0 0 5px white;
+            border: 1px solid white;
+            color: white;
+            background-color: #252525;
+            font-size: 50px;
+            font-weight: bold;
+            transition: 0.5s;
+            &:hover {
+              border: 2px solid pink;
+              transform: scale(1.1);
+            }
+            &:active {
+              border: 2px solid lightpink;
+              transform: scale(0.975);
+            }
+          }
+        }
+        &.ControlBtn {
+          grid-area: ControlBtn;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          button {
+            padding: 6px 10px;
+            font-weight: bold;
+            font-size: 15px;
+            color: white;
+            background-color: black;
+            border: 1px solid white;
+            box-shadow: 4px 4px 4px white;
+            transition: 0.5s;
+            &:hover {
+              color: green;
+            }
+            &:active {
+              transform: translateY(3px);
+              transform: translateX(3px);
+              box-shadow: 1px 1px 1px white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  body {
+    main {
+      div.Game {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
