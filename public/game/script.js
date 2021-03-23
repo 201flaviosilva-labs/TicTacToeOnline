@@ -14,12 +14,11 @@ window.onload = () => {
 	roomNameSpan.innerHTML = RoomName;
 
 	socket.on("status", s => {
-		console.log(s);
 		game = s;
 		updateUI();
 	});
 
-	socket.on("UsersRoom", roomInfo => { });
+	socket.on("UpdatePlayers", updatePlayersNames);
 
 
 	// ---- Game UI
@@ -53,12 +52,14 @@ window.onload = () => {
 		}
 	}
 
+	function updatePlayersNames(players) {
+		PlayerNameX.innerHTML = players.filter(user => user.symbol !== "X")[0]?.username || "No Player";
+		PlayerNameO.innerHTML = players.filter(user => user.symbol !== "O")[0]?.username || "No Player";
+	}
+
 	function updateUI() {
 		ScoreXSpan.innerHTML = game.score.X;
 		ScoreOSpan.innerHTML = game.score.O;
-
-		PlayerNameX.innerHTML = "Prayer";
-		PlayerNameO.innerHTML = "Prayer";
 
 		printBoardUI();
 	}

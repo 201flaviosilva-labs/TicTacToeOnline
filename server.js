@@ -1,5 +1,3 @@
-console.clear();
-
 const { Board } = require("./utils/Board");
 const { userJoin, getCurrentUser, userLeave, getRoomUsers, getActivePlayers } = require("./utils/users");
 
@@ -32,15 +30,18 @@ io.on("connection", socket => {
 
 		socket.join(user.room);
 
-		socket.emit("status", gameState); // Envia a mensagem apenas para quem se conectou agora
-		socket.to(user.room)
-			.emit("status", gameState); // Para a Sala Especificada
+		// Join in room
+		socket.to(user.room).emit("status", gameState);
+		socket.to(user.room).emit("UpdatePlayers", getActivePlayers(user.room));
 
 		// Player Move
 		socket.on("PlayerMove", i => {
-			board.move(i);
-			formateGameState();
-			io.to(user.room).emit("status", gameState);
+			if (user.symbol === board.actualPlayer) {
+				board.move(i);
+				formateGameState();
+				io.to(user.room).emit("status", gameState);
+				io.to(user.room).emit("UpdatePlayers", getActivePlayers(user.room));
+			}
 		});
 
 		// New Board
@@ -48,6 +49,7 @@ io.on("connection", socket => {
 			board.newBoard();
 			formateGameState();
 			io.to(user.room).emit("status", gameState);
+			io.to(user.room).emit("UpdatePlayers", getActivePlayers(user.room));
 		});
 
 		// Reset
@@ -55,6 +57,7 @@ io.on("connection", socket => {
 			board.init();
 			formateGameState();
 			io.to(user.room).emit("status", gameState);
+			io.to(user.room).emit("UpdatePlayers", getActivePlayers(user.room));
 		});
 
 		updateUsersRoom(user);
@@ -65,6 +68,7 @@ io.on("connection", socket => {
 		const user = getCurrentUser(socket.id);
 		if (user) {
 			io.to(user.room).emit("status", gameState);
+			io.to(user.room).emit("UpdatePlayers", getActivePlayers(user.room));
 			userLeave(socket.id);
 			updateUsersRoom(user);
 		}
