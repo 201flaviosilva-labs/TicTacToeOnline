@@ -36,6 +36,10 @@ class Board {
 			"", "", ""
 		];
 
+		for (let i = 0; i < this.state.length; i++) {
+			this.state[i] = "";
+		}
+
 		this.isGameOver = false;
 		this.winPlayer = null;
 	}
