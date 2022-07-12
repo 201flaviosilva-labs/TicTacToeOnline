@@ -2,12 +2,11 @@
   "name": "TicTacToeOnline",
   "version": "1.0.0",
   "description": "Tic Tac Toe Online",
-  "homepage": "https://mangito.github.io/FireCosmos/",
+  "homepage": "https://201flaviosilva-labs.github.io/TicTacToe/",
   "private": false,
   "author": {
-    "name": "Mangito",
-    "email": "mangitogame@gmail.com",
-    "url": "https://mangito.github.io/Manguito/"
+    "name": "Flávio Silva",
+    "url": "https://201flaviosilva.github.io/"
   },
   "main": "server.js",
   "scripts": {
@@ -25,11 +24,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mangito/TicTacToeOnline.git"
+    "url": "git+https://github.com/201flaviosilva-labs/TicTacToeOnline.git"
   },
   "keywords": [],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Mangito/TicTacToeOnline/issues"
+    "url": "https://github.com/201flaviosilva-labs/TicTacToeOnline/issues"
   }
 }
